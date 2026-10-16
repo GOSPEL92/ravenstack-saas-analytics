@@ -1,0 +1,237 @@
+version: 2
+
+models:
+  - name: fct_account_health
+    description: "Fact table combining accounts, subscriptions, and support tickets"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - not_null
+          - unique
+      - name: subscription_count
+        description: "Number of subscriptions linked to the account"
+        tests:
+          - not_null
+      - name: support_ticket_count
+        description: "Number of support tickets linked to the account (0 if none)"
+        tests:
+          - not_null
+      - name: avg_resolution_time
+        description: "Average resolution time for tickets (0 if none)"
+        tests:
+          - not_null
+      - name: avg_satisfaction_score
+        description: "Average satisfaction score (0–10). May be NULL if no tickets"
+        tests: []
+
+  - name: dim_accounts
+    description: "Dimension table with account attributes"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - not_null
+          - unique
+      - name: industry
+        description: "Industry classification of the account"
+        tests:
+          - not_null
+      - name: country
+        description: "Country of the account"
+        tests:
+          - not_null
+      - name: plan_tier
+        description: "Subscription plan tier"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['basic', 'pro', 'enterprise']
+
+  - name: fct_subscriptions
+    description: "Aggregated fact table capturing subscription metrics per account"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - not_null
+          - unique
+      - name: subscription_count
+        description: "Number of subscriptions linked to the account"
+        tests:
+          - not_null
+      - name: total_seats
+        description: "Total seats purchased by the account"
+        tests:
+          - not_null
+      - name: total_mrr
+        description: "Total monthly recurring revenue per account"
+        tests:
+          - not_null
+      - name: total_arr
+        description: "Total annual recurring revenue per account"
+        tests:
+          - not_null
+      - name: churned_subscriptions
+        description: "Number of churned subscriptions per account"
+        tests:
+          - not_null
+      - name: avg_subscription_duration_days
+        description: "Average subscription duration in days per account"
+        tests:
+          - not_null
+
+  - name: dim_subscriptions
+    description: "Dimension table with subscription attributes"
+    columns:
+      - name: subscription_id
+        description: "Unique identifier for each subscription"
+        tests:
+          - not_null
+          - unique
+      - name: plan_tier
+        description: "Subscription plan tier"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['basic', 'pro', 'enterprise']
+      - name: billing_frequency
+        description: "Billing frequency of the subscription"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['monthly', 'quarterly', 'yearly']
+      - name: auto_renew_flag
+        description: "Flag indicating if subscription auto-renews"
+        tests:
+          - not_null
+
+  - name: fct_support_tickets
+    description: "Fact table capturing support ticket metrics per account"
+    columns:
+      - name: account_id
+        tests:
+          - not_null
+          - unique
+      - name: ticket_count
+        description: "Number of tickets per account"
+        tests:
+          - not_null
+      - name: avg_resolution_time_hours
+        description: "Average resolution time in hours"
+        tests:
+          - not_null
+      - name: avg_first_response_time_minutes
+        description: "Average first response time in minutes"
+        tests:
+          - not_null
+      - name: avg_satisfaction_score
+        description: "Average satisfaction score (0–10)"
+        tests: []
+      - name: escalated_ticket_count
+        description: "Number of escalated tickets per account"
+        tests:
+          - not_null
+
+  - name: dim_support_tickets
+    description: "Dimension table with support ticket attributes"
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null
+          - unique
+      - name: priority
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['low', 'medium', 'high', 'urgent']
+      - name: escalation_flag
+        description: "Flag indicating if ticket was escalated"
+        tests:
+          - not_null
+
+  - name: fct_customer_health
+    description: "Fact table combining subscriptions, support, and account attributes into a health score"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - not_null
+          - unique
+      - name: industry
+        description: "Industry classification of the account"
+        tests:
+          - not_null
+      - name: country
+        description: "Country of the account"
+        tests:
+          - not_null
+      - name: plan_tier
+        description: "Subscription plan tier"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['basic', 'pro', 'enterprise']
+      - name: subscription_count
+        description: "Number of subscriptions linked to the account (defaults to 0 if none)"
+        tests:
+          - not_null
+      - name: total_mrr
+        description: "Total monthly recurring revenue per account (defaults to 0 if none)"
+        tests:
+          - not_null
+      - name: churned_subscriptions
+        description: "Number of churned subscriptions per account (defaults to 0 if none)"
+        tests:
+          - not_null
+      - name: avg_subscription_duration_days
+        description: "Average subscription duration in days per account (defaults to 0 if none)"
+        tests:
+          - not_null
+      - name: ticket_count
+        description: "Number of support tickets linked to the account (defaults to 0 if none)"
+        tests:
+          - not_null
+      - name: avg_resolution_time_hours
+        description: "Average resolution time for tickets (NULL if no tickets exist)"
+        tests: []
+      - name: avg_first_response_time_minutes
+        description: "Average first response time in minutes (NULL if no tickets exist)"
+        tests: []
+      - name: avg_satisfaction_score
+        description: "Average satisfaction score (0–10, NULL if no tickets exist)"
+        tests: []
+      - name: escalated_ticket_count
+        description: "Number of escalated tickets per account (defaults to 0 if none)"
+        tests:
+          - not_null
+      - name: customer_health_score
+        description: "Composite score reflecting account health"
+        tests: []
+
+
+  
+  - name: fct_customer_health
+    description: "Fact table combining subscriptions, support, and account attributes into a health score"
+    meta:
+      owner: "Analytics Team"
+      tags: ["customer health", "subscriptions", "support"]
+      dashboard: "Customer Health Overview"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - not_null
+          - unique
+      - name: plan_tier
+        description: "Subscription plan tier"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["basic", "pro", "enterprise"]
+      - name: total_mrr
+        description: "Total monthly recurring revenue"
+        tests:
+          - not_null
+      # … rest of your columns …

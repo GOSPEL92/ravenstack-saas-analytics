@@ -1,0 +1,247 @@
+ version: 2
+
+models:
+  - name: stg_ravenstack_accounts
+    description: "Cleaned staging table for Ravenstack accounts"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each account"
+        tests:
+          - not_null
+          - unique
+      # … rest of your columns …
+
+      - name: account_name
+        description: "Name of the account"
+        tests:
+          - not_null
+      - name: industry
+        description: "Industry category of the account"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["tech", "finance", "healthcare", "education", "other"]
+      - name: country
+        description: "Country of the account"
+        tests:
+          - not_null
+      - name: signup_date
+        description: "Date the account signed up"
+        tests:
+          - not_null
+      - name: referral_source
+        description: "How the account was referred"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["web", "partner", "ad_campaign", "other"]
+      - name: plan_tier
+        description: "Subscription plan tier"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["basic", "standard", "premium", "trial"]
+      - name: seats
+        description: "Number of seats/licenses purchased"
+        tests:
+          - not_null
+      - name: is_trial
+        description: "Flag indicating if account is on trial"
+        tests:
+          - not_null
+      - name: churn_flag
+        description: "Flag indicating if account has churned"
+        tests:
+          - not_null
+
+  - name: stg_ravenstack_subscriptions
+    description: "Cleaned staging table for Ravenstack subscriptions"
+    columns:
+      - name: subscription_id
+        description: "Unique identifier for each subscription"
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        description: "Account linked to subscription"
+        tests:
+          - not_null
+      - name: start_date
+        description: "Subscription start date"
+        tests:
+          - not_null
+      - name: end_date
+        description: "Subscription end date"
+        tests: []
+      - name: plan_tier
+        description: "Subscription plan tier"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["basic", "standard", "premium", "trial"]
+      - name: seats
+        description: "Number of seats/licenses in subscription"
+        tests:
+          - not_null
+      - name: mrr_amount
+        description: "Monthly recurring revenue amount"
+        tests:
+          - not_null
+      - name: arr_amount
+        description: "Annual recurring revenue amount"
+        tests:
+          - not_null
+      - name: is_trial
+        description: "Flag indicating if subscription is trial"
+        tests:
+          - not_null
+      - name: upgrade_flag
+        description: "Flag indicating if subscription was upgraded"
+        tests:
+          - not_null
+      - name: downgrade_flag
+        description: "Flag indicating if subscription was downgraded"
+        tests:
+          - not_null
+      - name: churn_flag
+        description: "Flag indicating if subscription churned"
+        tests:
+          - not_null
+      - name: billing_frequency
+        description: "Billing frequency of subscription"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["monthly", "quarterly", "yearly"]
+      - name: auto_renew_flag
+        description: "Flag indicating if subscription auto-renews"
+        tests:
+          - not_null
+
+  - name: stg_ravenstack_feature_usage
+    description: "Cleaned staging table for Ravenstack feature usage"
+    columns:
+      - name: usage_id
+        description: "Unique identifier for each feature usage record"
+        tests:
+          - not_null
+          - unique
+      - name: subscription_id
+        description: "Subscription linked to the usage event"
+        tests:
+          - not_null
+      - name: usage_date
+        description: "Date of feature usage"
+        tests:
+          - not_null
+      - name: feature_name
+        description: "Name of the feature being used"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["dashboard", "analytics", "reporting", "integration", "api", "other"]
+      - name: usage_count
+        description: "Number of times the feature was used"
+        tests:
+          - not_null
+      - name: usage_duration_secs
+        description: "Total duration of usage in seconds"
+        tests:
+          - not_null
+      - name: error_count
+        description: "Number of errors encountered during usage"
+        tests:
+          - not_null
+      - name: is_beta_feature
+        description: "Flag indicating if the feature is in beta"
+        tests:
+          - not_null
+
+  - name: stg_ravenstack_support_tickets
+    description: "Cleaned staging table for Ravenstack support tickets"
+    columns:
+      - name: ticket_id
+        description: "Unique identifier for each support ticket"
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        description: "Account linked to the support ticket"
+        tests:
+          - not_null
+      - name: submitted_at
+        description: "Datetime when the ticket was submitted"
+        tests:
+          - not_null
+      - name: closed_at
+        description: "Datetime when the ticket was closed"
+        tests: []
+      - name: resolution_time_hours
+        description: "Total time taken to resolve the ticket in hours"
+        tests:
+          - not_null
+      - name: priority
+        description: "Priority level of the ticket"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["low", "medium", "high", "urgent"]
+      - name: first_response_time_minutes
+        description: "Time taken for the first response in minutes"
+        tests:
+          - not_null
+      - name: satisfaction_score
+        description: "Customer satisfaction score for the ticket"
+        tests: []
+      - name: escalation_flag
+        description: "Flag indicating if the ticket was escalated"
+        tests:
+          - not_null
+
+  - name: stg_ravenstack_churn_events
+    description: "Cleaned staging table for Ravenstack churn events"
+    columns:
+      - name: churn_event_id
+        description: "Unique identifier for each churn event"
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        description: "Account linked to the churn event"
+        tests:
+          - not_null
+      - name: churn_date
+        description: "Date when the churn event occurred"
+        tests:
+          - not_null
+      - name: reason_code
+        description: "Reason code for churn"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["pricing", "service_issue", "competition", "feature_gap", "other"]
+      - name: refund_amount_usd
+        description: "Refund amount in USD for churn event"
+        tests: []
+      - name: preceding_upgrade_flag
+        description: "Flag indicating if an upgrade preceded churn"
+        tests:
+          - not_null
+      - name: preceding_downgrade_flag
+        description: "Flag indicating if a downgrade preceded churn"
+        tests:
+          - not_null
+      - name: is_reactivation
+        description: "Flag indicating if this churn event is actually a reactivation"
+        tests:
+          - not_null
+      - name: feedback_text
+        description: "Free-text customer feedback provided during churn"
+        tests: []

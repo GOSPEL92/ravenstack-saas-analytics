@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: int_subscriptions_accounts
+    description: "Intermediate model joining subscriptions with accounts"
+    columns:
+      - name: subscription_id
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        tests:
+          - not_null
+      - name: plan_tier
+        tests:
+          - accepted_values:
+              values: ['basic','pro','enterprise','trial']
+      - name: country
+        tests:
+          - not_null
+
+
+
+
+  - name: int_churn_accounts
+    description: "Intermediate model joining churn events with accounts"
+    columns:
+      - name: churn_event_id
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        tests:
+          - not_null
+      - name: reason_code
+        tests:
+          - accepted_values:
+              values: ['pricing','service_issue','competition','feature_gap','other']
+      - name: churn_date
+        tests:
+          - not_null
+
+
+
+
+
+  - name: int_feature_usage_subscriptions
+    description: "Intermediate model joining feature usage with subscriptions"
+    columns:
+      - name: usage_id
+        tests:
+          - not_null
+      - name: subscription_id
+        tests:
+          - not_null
+      - name: feature_name
+        tests:
+          - not_null
+      - name: plan_tier
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['basic','pro','enterprise','trial']
+      - name: usage_count
+        tests:
+          - not_null
+
+
+  - name: int_feature_usage_subscriptions_agg
+    description: "Aggregated feature usage per subscription, feature, and date"
+    columns:
+      - name: subscription_id
+        tests:
+          - not_null
+      - name: feature_name
+        tests:
+          - not_null
+      - name: usage_date
+        tests:
+          - not_null
+
+  - name: int_support_tickets_accounts
+    description: "Intermediate model joining support tickets with accounts"
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null
+          - unique
+      - name: account_id
+        tests:
+          - not_null
+      - name: account_name
+        tests:
+          - not_null
+      - name: submitted_at
+        tests:
+          - not_null
+      - name: priority
+        tests:
+          - accepted_values:
+              values: ['low', 'medium', 'high', 'urgent']
+      - name: escalation_flag
+        tests:
+          - accepted_values:
+              values: [0, 1]
+      - name: churn_flag
+        tests:
+          - accepted_values:
+              values: [0, 1]
