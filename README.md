@@ -1,10 +1,13 @@
 RavenStack SaaS Analytics Platform
+
 Overview
+
 RavenStack SaaS Analytics Platform is an end-to-end analytics solution designed to provide executive visibility into revenue performance, customer health, churn risk, and customer success operations.
 
 The project demonstrates the complete analytics lifecycle, from data warehousing and transformation to business intelligence reporting and executive decision-making.
--------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Business Problem
+
 Modern SaaS organizations require visibility into:
 
 1. Revenue growth and recurring revenue performance
@@ -12,17 +15,20 @@ Modern SaaS organizations require visibility into:
 3. Churn risk and customer health
 4. Customer support effectiveness
 5. Customer satisfaction and success metrics
+
 This project delivers a centralized analytics platform that enables stakeholders to monitor and optimize SaaS business performance.
--------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Technology Stack
+
 1. SQL Server
 2. dbt
 3. Power BI
 4. DAX
 5. GitHub
--------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Data Architecture
+
 
 Raw Data
     ↓
@@ -33,9 +39,11 @@ Intermediate Layer
 Mart Layer
     ↓
 Power BI Dashboard
--------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Data Warehouse Components
+
 Raw Layer
+
 . Accounts
 . Subscriptions
 . Support Tickets
@@ -43,17 +51,20 @@ Raw Layer
 . Churn Events
 
 Staging Layer
+
 . Standardized and cleaned source data
 . Data quality checks
 . Data type normalization
 
 Intermediate Layer
+
 . Business transformations
 . Customer aggregations
 . Revenue calculations
 . Churn preparation
 
 Mart Layer
+
 Fact Tables
 . fct_subscriptions
 . fct_customer_health
@@ -61,17 +72,19 @@ Fact Tables
 . fct_account_health
 
 Dimension Tables
+
 . dim_accounts
 . dim_subscriptions
 . dim_support_tickets
--------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Dashboard Pages
+
 Cover Page
 
 . Provides project introduction and navigation experience.
 
-screenshots\cover-page.png
--------------------------------------------------------------
+![Cover Page](screenshots/cover-page.png)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Executive Overview
 Provides a high-level view of business performance through key SaaS KPIs.
 
@@ -87,8 +100,8 @@ Trends
 . MRR Trend
 . Customer Growth Trend
 . Customer Churn Trend
-screenshots\executive-overview.png
--------------------------------------------------------------
+![Executive Overview](screenshots\executive-overview.png)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Revenue Analytics
 
 Revenue-focused analysis designed to identify growth drivers.
@@ -106,8 +119,8 @@ Analysis
 . MRR by Subscription Plan
 . Customers by Subscription Plan
 . Top Revenue Accounts
-screenshots\revenue-analytics.png
--------------------------------------------------------------
+![Revenue Analytics](screenshots\revenue-analytics.png)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Customer Analytics
 
 Customer-focused analysis for segmentation and account health evaluation.
@@ -123,8 +136,8 @@ Analysis
 . Customers by Country
 . Customers by Subscription Plan
 . Health Score Analysis
-screenshots\customer-analytics.png
--------------------------------------------------------------
+![Customer Analytics](screenshots\customer-analytics.png)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Churn Intelligence
 Identifies customer attrition patterns and retention opportunities.
 
@@ -134,8 +147,8 @@ Analysis
 . Churn by Subscription Plan
 . Health Score Analysis
 . Churn Driver Investigation
-screenshots\churn-intelligence.png
--------------------------------------------------------------
+![Churn Intelligence](screenshots\churn-intelligence.png)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Customer Success Analytics
 Measures support effectiveness and customer satisfaction.
 
@@ -149,13 +162,13 @@ Analysis
 . CSAT by Subscription Plan
 . Resolution Time Analysis
 . Escalation Analysis
-screenshots\customer-success.png
--------------------------------------------------------------
+![Customer Success](screenshots\customer-success.png)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Custom Tooltips
 Enhanced report experience through interactive report-page tooltips.
 
-screenshots\tooltips-overview.png
--------------------------------------------------------------
+![Tooltips ](screenshots\tooltips-overview.png) 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Key KPIs
 
 KPI	Value
@@ -164,14 +177,15 @@ ARR	$136.06M
 Customer Retention Rate	78%
 Customer Churn Rate	22%
 CSAT	3.96 / 5
--------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Key Insights
+
 . Revenue remains strong with $11.34M in Monthly Recurring Revenue.
 . Annual Recurring Revenue exceeds $136M.
 . Customer retention is healthy at 78%.
 . Customer churn remains the primary business risk at 22%.
 . Customer satisfaction averages 3.96/5, indicating generally positive customer experiences.
--------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Project Highlights
 ✅ Data Warehouse Design
 
