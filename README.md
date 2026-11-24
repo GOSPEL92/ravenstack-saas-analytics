@@ -1,12 +1,10 @@
-RavenStack SaaS Analytics Platform
-
-Overview
-
+# RavenStack SaaS Analytics Platform
+---
+## Overview
 RavenStack SaaS Analytics Platform is an end-to-end analytics solution designed to provide executive visibility into revenue performance, customer health, churn risk, and customer success operations.
 The project demonstrates the complete analytics lifecycle, from data warehousing and transformation to business intelligence reporting and executive decision-making.
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Business Problem
-
+---
+## Business Problem
 Modern SaaS organizations require visibility into:
 
 1. Revenue growth and recurring revenue performance
@@ -14,18 +12,19 @@ Modern SaaS organizations require visibility into:
 3. Churn risk and customer health
 4. Customer support effectiveness
 5. Customer satisfaction and success metrics
-This project delivers a centralized analytics platform that enables stakeholders to monitor and optimize SaaS business performance.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Technology Stack
+
+   This project delivers a centralized analytics platform that enables stakeholders to monitor and optimize SaaS business performance.
+---
+## Technology Stack
 
 1. SQL Server
 2. dbt
 3. Power BI
 4. DAX
 5. GitHub
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
-Data Architecture
+## Data Architecture
 
 
 Raw Data
@@ -41,8 +40,8 @@ Mart Layer
     ↓
 
 Power BI Dashboard
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Data Warehouse Components
+---
+## Data Warehouse Components
 
 Raw Layer
 
@@ -92,20 +91,20 @@ Dimension Tables
 . dim_subscriptions
 
 . dim_support_tickets
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Dashboard Pages
+---
+## Dashboard Pages
 
 Cover Page
 
  Provides project introduction and navigation experience.
 
 ![Cover Page](screenshots/cover-page.png)
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Executive Overview  
+---
+## Executive Overview  
 
 Provides a high-level view of business performance through key SaaS KPIs.
 
-KPIs
+**KPIs**
 
 . Monthly Recurring Revenue (MRR)
 
@@ -117,7 +116,7 @@ KPIs
 
 . Customer Satisfaction Score (CSAT)
 
-Trends
+**Trends**
 
 . MRR Trend
 
@@ -126,8 +125,8 @@ Trends
 . Customer Churn Trend
 
 ![Executive Overview](screenshots/executive-overview.png)
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Revenue Analytics
+---
+**Revenue Analytics**
 
 Revenue-focused analysis designed to identify growth drivers.
 
@@ -154,8 +153,8 @@ Analysis
 . Top Revenue Accounts
 
 ![Revenue Analytics](screenshots/revenue-analytics.png)
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Customer Analytics
+---
+**Customer Analytics**
 
 Customer-focused analysis for segmentation and account health evaluation.
 
@@ -169,7 +168,7 @@ KPIs
 
 . Average Health Score
 
-Analysis
+**Analysis**
 
 . Customers by Industry
 
@@ -180,8 +179,8 @@ Analysis
 . Health Score Analysis
 
 ![Customer Analytics](screenshots/customer-analytics.png)
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Churn Intelligence
+---
+**Churn Intelligence**
 
 Identifies customer attrition patterns and retention opportunities.
 
@@ -198,8 +197,8 @@ Analysis
 . Churn Driver Investigation
 
 ![Churn Intelligence](screenshots/churn-intelligence.png)
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Customer Success Analytics
+---
+**Customer Success Analytics**
 
 Measures support effectiveness and customer satisfaction.
 
@@ -224,14 +223,14 @@ Analysis
 . Escalation Analysis
 
 ![Customer Success](screenshots/customer-success.png)
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Custom Tooltips
+---
+**Custom Tooltips**
 
 Enhanced report experience through interactive report-page tooltips.
 
 ![Tooltips ](screenshots/tooltips-overview.png) 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Key KPIs
+---
+**Key KPIs**
 
 KPI	Value
 
@@ -244,8 +243,8 @@ KPI	Value
 . Customer Churn Rate	22%
 
 . CSAT	3.96 / 5
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Key Insights
+---
+**Key Insights**
 
 . Revenue remains strong with $11.34M in Monthly Recurring Revenue.
 
@@ -256,8 +255,8 @@ Key Insights
 . Customer churn remains the primary business risk at 22%.
 
 . Customer satisfaction averages 3.96/5, indicating generally positive customer experiences.
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Project Highlights
+---
+**Project Highlights**
 ✅ Data Warehouse Design
 
 ✅ dbt Data Transformation Pipeline
@@ -276,7 +275,7 @@ Project Highlights
 
 ✅ Power BI Executive Reporting
 
-Author
+**Author**
 Eze Chikaodili
 
 Data Analytics | Business Intelligence | Analytics Engineering
